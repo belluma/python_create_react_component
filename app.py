@@ -1,4 +1,4 @@
-#!/usr/bin python3
+#!/usr/bin/python3
 
 import sys
 import os
@@ -13,13 +13,12 @@ components = sys.argv[2:]
 
 def replace_dash(file_name):
     chars = [char for char in file_name]
-    index = file_name.find('-')
     for index, char in enumerate(chars):
         if char == '-':
             chars.pop(index)
             if index < len(chars) and chars[index].isalpha():
-                print(chars[index])
                 chars[index] =chars[index].upper()
+    chars[0] = chars[0].upper()
     return ('').join(chars)
 
 def create_component(comp_dir, file_name):
@@ -93,7 +92,7 @@ def create_story(comp_dir,file_name):
     file.write(f"    title: 'Components/{file_name},\n")
     file.write("} as Meta;\n")
     file.write("\n")
-    file.write(f"const Templat: Story<{file_name}Props> = (args) => <{file_name} {{...args}} />;\n")
+    file.write(f"const Template: Story<{file_name}Props> = (args) => <{file_name} {{...args}} />;\n")
     file.write("\n")
     file.write(" export const Primary = Template.bind({});\n")
     file.write("\n")
