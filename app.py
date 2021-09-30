@@ -91,7 +91,7 @@ def create_story(comp_dir,file_name):
     file.write("\n")
     file.write("export default {\n")
     file.write(f"    component: {file_name},\n")
-    file.write(f"    title: 'Components/{file_name}',\n")
+    file.write(f"    title: '{dir_path}/{comp_dir}/{file_name}',\n")
     file.write("} as Meta;\n")
     file.write("\n")
     file.write(f"const Template: Story = (args) => <{file_name} {{...args}} />;\n")
