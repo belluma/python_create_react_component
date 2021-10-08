@@ -27,6 +27,11 @@ def create_component(comp_dir, file_name):
         return f"file {path} already exists"
     file = open(path, 'w')
     file.write("import React from 'react'\n")
+    file.write("\n")
+    file.write("//component imports\n")
+    file.write("\n")
+    file.write("//interface imports\n")
+    file.write("\n")
     file.write("type Props = {};\n")
     file.write("\n")
     file.write(f"function {file_name}(props: Props){{\n")
@@ -114,7 +119,7 @@ def create_files(component):
     print(create_component(component, file_name))
     print(create_stylesheet(component, file_name))
     print(create_test_file(component, file_name))
-    print(create_story(component, file_name))
+    # print(create_story(component, file_name))
 
 for component in components:
     create_files(component)
