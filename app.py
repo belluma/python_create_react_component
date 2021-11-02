@@ -3,8 +3,7 @@
 import sys
 import os
 
-if len(sys.argv) < 3:
-    print("not enough arguments given")
+
 
 dir_path = sys.argv[1]
 if not os.path.isdir(dir_path):
@@ -61,27 +60,11 @@ def create_test_file(comp_dir,file_name):
         return f"file {path} already exists"
     file = open(path, 'w')
     file.write("import React from 'react';\n")
-    file.write("import {render, screen} from '@testing-library/react';")
-    # file.write("import ReactDOM from 'react-dom';\n")
+    file.write("import {render, screen} from '@testing-library/react';\n")
     file.write(f"import {file_name} from './{file_name}';\n")
     file.write("\n")
-    # file.write("let container: HTMLElement | null = null;\n")
-    # file.write("beforeEach(() => {\n")
-    # file.write("    container = document.createElement('div');\n")
-    # file.write("    document.body.appendChild(container);\n")
-    # file.write("});\n")
-    # file.write("\n")
-    # file.write("afterEach(() =>{\n")
-    # file.write("    if(container){\n")
-    # file.write("    ReactDOM.unmountComponentAtNode(container);\n")
-    # file.write("    container.remove();\n")
-    # file.write("    }")
-    # file.write("    container = null;\n")
-    # file.write("})\n")
     file.write("\n")
     file.write("it('renders without crashing', () => {\n")
-    # file.write("    const div = document.createElement('div');\n")
-    # file.write(f"   ReactDOM.render(<{file_name} />, div);\n")
     file.write(f"    render(<{file_name} />);")
     file.write("    });\n")
     file.close()
@@ -121,7 +104,9 @@ def create_files(component):
     print(create_component(component, file_name))
     print(create_stylesheet(component, file_name))
     print(create_test_file(component, file_name))
-    # print(create_story(component, file_name))
 
 for component in components:
+    if len(sys.argv) < 3:
+        print("not enough arguments given")
+        break
     create_files(component)
